@@ -10,6 +10,14 @@ from app.main import templates
 router = APIRouter()
 
 
+def get_current_user(request: Request, db: Session) -> Expert | None:
+    expert_id = request.cookies.get("expert_id")
+    if not expert_id:
+        return None
+
+    return db.query(Expert).filter(Expert.id == int(expert_id)).first()
+
+
 @router.get("/login", response_class=HTMLResponse)
 def login_page(request: Request):
     return templates.TemplateResponse(
@@ -47,4 +55,24 @@ def login(
         value=str(expert.id),
         httponly=True,
     )
+    return response
+
+
+@router.post("/logout")
+def logout(
+    request: Request,
+    password: str = Form(...),
+    db: Session = Depends(get_db),
+):
+    user = get_current_user(request, db)
+
+    if not user:
+        return RedirectResponse(url="/login", status_code=303)
+
+    if not verify_password(password, user.password_hash):
+        redirect_url = "/admin?logout_error=1" if user.is_admin else "/expert?logout_error=1"
+        return RedirectResponse(url=redirect_url, status_code=303)
+
+    response = RedirectResponse(url="/login", status_code=303)
+    response.delete_cookie("expert_id")
     return response

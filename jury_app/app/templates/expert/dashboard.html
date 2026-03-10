@@ -3,40 +3,87 @@
 {% block title %}Проекты{% endblock %}
 
 {% block content %}
-<div class="dashboard-page">
-    <div class="dashboard-header">
-        <div>
-            <h1 class="dashboard-title">Проекты</h1>
+<div class="screen">
+    <header class="hero-panel">
+        <div class="hero-left">
+            <div class="forum-mark">JUNIOR PAYTECH FORUM</div>
+            <h1 class="hero-title">Оценивание проектов</h1>
+            <p class="hero-subtitle">Эксперт: {{ expert.full_name }}</p>
         </div>
-    </div>
+
+        <div class="hero-right hero-actions">
+            <div class="hero-date">9–10 АПРЕЛЯ 2026</div>
+            <button type="button" class="btn btn-outline" onclick="openLogoutModal()">Выйти</button>
+        </div>
+    </header>
+
+    {% if request.query_params.get('logout_error') %}
+        <div class="alert alert-error">Неверный пароль. Выход не выполнен.</div>
+    {% endif %}
+
+    <section class="section-head">
+        <h2 class="section-title">Список проектов</h2>
+        <div class="section-note">Нажмите на карточку, чтобы открыть проект и выставить оценку</div>
+    </section>
 
     <div class="project-grid">
         {% for project in projects %}
-            <a href="/expert/projects/{{ project.id }}" class="project-card">
+            {% set status = status_map.get(project.id) %}
+            <a href="/expert/projects/{{ project.id }}" class="project-card project-card-poster">
+                <div class="project-status project-status-{{ status.code }}">
+                    {{ status.label }}
+                </div>
+
                 {% if project.card_image %}
                     <img
                         src="{{ url_for('static', path=project.card_image) }}"
                         alt="{{ project.title }}"
                         class="project-card-image"
                     >
+                    <div class="project-card-overlay"></div>
                 {% else %}
-                    <div class="project-card-placeholder">
-                        <div class="project-card-content">
-                            <span class="project-badge">Проект {{ loop.index }}</span>
-                            <h2 class="project-title">{{ project.title }}</h2>
-                            <div class="project-meta">
-                                <div><strong>Автор:</strong> {{ project.author_full_name }}</div>
-                                <div><strong>Организация:</strong> {{ project.organization }}</div>
-                            </div>
-                        </div>
+                    <div class="project-card-fallback">
+                        <div class="project-card-number">Проект {{ loop.index }}</div>
+                        <h3 class="project-card-title">{{ project.title }}</h3>
+                        <div class="project-card-meta">{{ project.author_full_name }}</div>
+                        <div class="project-card-meta">{{ project.organization }}</div>
                     </div>
                 {% endif %}
             </a>
         {% else %}
-            <div class="empty-state">
+            <div class="glass-panel empty-state">
                 Пока нет проектов для оценки
             </div>
         {% endfor %}
     </div>
 </div>
+
+<div class="modal-backdrop" id="logoutModal">
+    <div class="modal-card">
+        <div class="modal-title">Подтверждение выхода</div>
+        <div class="modal-text">Введите пароль, чтобы выйти из аккаунта</div>
+
+        <form method="post" action="/logout" class="modal-form">
+            <div class="form-group">
+                <label for="logout-password">Пароль</label>
+                <input type="password" id="logout-password" name="password" required>
+            </div>
+
+            <div class="modal-actions">
+                <button type="button" class="btn btn-outline" onclick="closeLogoutModal()">Отмена</button>
+                <button type="submit" class="btn btn-accent">Подтвердить выход</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    function openLogoutModal() {
+        document.getElementById('logoutModal').classList.add('is-open');
+    }
+
+    function closeLogoutModal() {
+        document.getElementById('logoutModal').classList.remove('is-open');
+    }
+</script>
 {% endblock %}

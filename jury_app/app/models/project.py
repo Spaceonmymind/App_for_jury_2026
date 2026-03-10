@@ -14,6 +14,7 @@ class Project(Base):
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
     additional_info: Mapped[str | None] = mapped_column(Text, nullable=True)
     card_image: Mapped[str | None] = mapped_column(String(255), nullable=True)
+    author_image: Mapped[str | None] = mapped_column(String(255), nullable=True)
     sort_order: Mapped[int] = mapped_column(Integer, default=0, nullable=False)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True, nullable=False)
 
