@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+
+{% block title %}Админка{% endblock %}
+
+{% block content %}
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <div>
+            <h1 class="dashboard-title">Админ-панель</h1>
+            <p class="dashboard-subtitle">Вы вошли как {{ user.full_name }}</p>
+        </div>
+    </div>
+
+    <div class="empty-state">
+        Заглушка
+    </div>
+</div>
+{% endblock %}

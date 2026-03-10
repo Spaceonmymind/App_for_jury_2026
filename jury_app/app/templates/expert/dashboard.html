@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Проекты{% endblock %}
+
+{% block content %}
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <div>
+            <h1 class="dashboard-title">Проекты</h1>
+        </div>
+    </div>
+
+    <div class="project-grid">
+        {% for project in projects %}
+            <a href="/expert/projects/{{ project.id }}" class="project-card">
+                {% if project.card_image %}
+                    <img
+                        src="{{ url_for('static', path=project.card_image) }}"
+                        alt="{{ project.title }}"
+                        class="project-card-image"
+                    >
+                {% else %}
+                    <div class="project-card-placeholder">
+                        <div class="project-card-content">
+                            <span class="project-badge">Проект {{ loop.index }}</span>
+                            <h2 class="project-title">{{ project.title }}</h2>
+                            <div class="project-meta">
+                                <div><strong>Автор:</strong> {{ project.author_full_name }}</div>
+                                <div><strong>Организация:</strong> {{ project.organization }}</div>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            </a>
+        {% else %}
+            <div class="empty-state">
+                Пока нет проектов для оценки
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
