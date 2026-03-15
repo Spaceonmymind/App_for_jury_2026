@@ -1,0 +1,83 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }}{% endblock %}
+
+{% block content %}
+<div class="screen">
+    <div class="detail-topbar">
+        <a href="/admin" class="nav-link">← К результатам</a>
+    </div>
+
+    <section class="hero-panel">
+        <div class="hero-left">
+            <div class="forum-mark">PROJECT DETAILS</div>
+            <h1 class="hero-title">{{ project.title }}</h1>
+            <p class="hero-subtitle">{{ project.author_full_name }} · {{ project.organization }}</p>
+        </div>
+    </section>
+
+    <section class="admin-stats-grid">
+        <div class="glass-panel admin-stat-card">
+            <div class="admin-stat-label">Сумма баллов</div>
+            <div class="admin-stat-value">{{ project_total }}</div>
+        </div>
+
+        <div class="glass-panel admin-stat-card">
+            <div class="admin-stat-label">Полностью оценили</div>
+            <div class="admin-stat-value">{{ completed_experts_count }}</div>
+        </div>
+
+        <div class="glass-panel admin-stat-card">
+            <div class="admin-stat-label">Средний итог на эксперта</div>
+            <div class="admin-stat-value">{{ average_total_per_expert }}</div>
+        </div>
+    </section>
+
+    <div class="glass-panel admin-table-wrap">
+        <table class="admin-table admin-detail-table">
+            <thead>
+                <tr>
+                    <th>Эксперт</th>
+                    {% for criterion in criteria %}
+                        <th>{{ criterion.name }}</th>
+                    {% endfor %}
+                    <th>Сумма</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in expert_rows %}
+                    <tr>
+                        <td>{{ row.expert.full_name }}</td>
+
+                        {% for score in row.scores %}
+                            <td>
+                                {% if score.value is not none %}
+                                    {{ score.value }}
+                                {% else %}
+                                    <span class="score-empty">—</span>
+                                {% endif %}
+                            </td>
+                        {% endfor %}
+
+                        <td><strong>{{ row.total_score }}</strong></td>
+                        <td>
+                            {% if row.is_complete %}
+                                <span class="admin-status admin-status-complete">Оценил</span>
+                            {% else %}
+                                <span class="admin-status admin-status-pending">Не завершил</span>
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="{{ criteria|length + 3 }}" class="admin-empty">
+                            Пока нет оценок по этому проекту
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+{% endblock %}

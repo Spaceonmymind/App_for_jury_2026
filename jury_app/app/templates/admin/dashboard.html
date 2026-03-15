@@ -3,16 +3,57 @@
 {% block title %}Админка{% endblock %}
 
 {% block content %}
-<div class="dashboard-page">
-    <div class="dashboard-header">
-        <div>
-            <h1 class="dashboard-title">Админ-панель</h1>
-            <p class="dashboard-subtitle">Вы вошли как {{ user.full_name }}</p>
+<div class="screen">
+    <header class="hero-panel">
+        <div class="hero-left">
+            <div class="forum-mark">ПАНЕЛЬ АДМИНИСТРАТОРАL</div>
+            <h1 class="hero-title">Результаты оценки проектов</h1>
         </div>
-    </div>
+    </header>
 
-    <div class="empty-state">
-        Заглушка
+    <section class="section-head">
+        <h2 class="section-title">Итоговая таблица</h2>
+    </section>
+
+    <div class="glass-panel admin-table-wrap">
+        <table class="admin-table">
+            <thead>
+                <tr>
+                    <th>Место</th>
+                    <th>Проект</th>
+                    <th>Автор</th>
+                    <th>Организация</th>
+                    <th>Экспертов</th>
+                    <th>Сумма</th>
+                    <th>Средний балл</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in results %}
+                    <tr>
+                        <td>
+                            <span class="rank-badge">{{ item.rank }}</span>
+                        </td>
+                        <td>
+                            <a href="/admin/projects/{{ item.project_id }}" class="admin-project-link">
+                                {{ item.title }}
+                            </a>
+                        </td>
+                        <td>{{ item.author_full_name }}</td>
+                        <td>{{ item.organization }}</td>
+                        <td>{{ item.experts_count }}</td>
+                        <td>{{ item.total_score }}</td>
+                        <td><strong>{{ item.average_score }}</strong></td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="7" class="admin-empty">
+                            Пока нет данных для отображения
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
     </div>
 </div>
 {% endblock %}
