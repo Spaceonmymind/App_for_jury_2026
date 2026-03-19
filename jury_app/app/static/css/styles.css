@@ -58,11 +58,6 @@ a {
     opacity: 0.5;
 }
 
-.bg-orb-1,
-.bg-orb-2,
-.bg-orb-3 {
-    transform: translateZ(0);
-}
 
 .screen {
     position: relative;
