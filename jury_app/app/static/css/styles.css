@@ -293,10 +293,6 @@ a {
 }
 
 .detail-topbar {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    align-items: center;
     margin-bottom: 0;
 }
 
@@ -812,16 +808,20 @@ a {
     top: 0;
     z-index: 1000;
     padding-top: 8px;
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    background: transparent;
 }
 
 .project-nav-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px;
     padding: 10px 18px;
     border-radius: 18px;
-    background: linear-gradient(180deg, rgba(10, 10, 40, 0.96), rgba(10, 10, 40, 0.86));
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+    background: rgba(10, 10, 40, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
 }
 
 .project-description-grid {
