@@ -51,31 +51,17 @@ a {
 }
 
 .bg-orb {
-    display: none;
+    position: fixed;
+    border-radius: 50%;
+    filter: blur(80px);
+    pointer-events: none;
+    opacity: 0.5;
 }
 
-.bg-orb-1 {
-    width: 320px;
-    height: 320px;
-    right: -80px;
-    top: 80px;
-    background: radial-gradient(circle, rgba(230, 80, 255, 0.5), rgba(230, 80, 255, 0.06));
-}
-
-.bg-orb-2 {
-    width: 260px;
-    height: 260px;
-    left: -100px;
-    bottom: 120px;
-    background: radial-gradient(circle, rgba(89, 163, 255, 0.36), rgba(89, 163, 255, 0.03));
-}
-
+.bg-orb-1,
+.bg-orb-2,
 .bg-orb-3 {
-    width: 200px;
-    height: 200px;
-    right: 18%;
-    bottom: -60px;
-    background: radial-gradient(circle, rgba(150, 98, 255, 0.28), rgba(150, 98, 255, 0.02));
+    transform: translateZ(0);
 }
 
 .screen {
