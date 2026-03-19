@@ -51,11 +51,7 @@ a {
 }
 
 .bg-orb {
-    position: fixed;
-    border-radius: 999px;
-    filter: blur(8px);
-    pointer-events: none;
-    opacity: 0.55;
+    display: none;
 }
 
 .bg-orb-1 {
@@ -919,12 +915,16 @@ a {
     display: flex;
     align-items: flex-start;
     gap: 12px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
 }
 
 .project-meta-label {
-    min-width: 130px;
-    padding: 6px 10px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-width: 0;
+    padding: 6px 12px;
     border-radius: 999px;
     background: rgba(255, 255, 255, 0.08);
     color: var(--text-soft);
@@ -932,6 +932,7 @@ a {
     font-weight: 800;
     text-transform: uppercase;
     letter-spacing: 0.04em;
+    flex: 0 0 auto;
 }
 
 .project-meta-value {
