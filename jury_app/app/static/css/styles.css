@@ -320,9 +320,25 @@ a {
     gap: 16px;
     padding: 10px 18px;
     border-radius: 18px;
-    background: rgba(10, 10, 40, 0.96);
-    border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
+
+    background:
+        linear-gradient(135deg, rgba(80, 60, 200, 0.35), rgba(200, 80, 255, 0.25)),
+        rgba(15, 12, 50, 0.75);
+
+    border: 1px solid rgba(200, 140, 255, 0.35);
+
+    box-shadow:
+        0 10px 30px rgba(120, 60, 255, 0.35),
+        inset 0 0 20px rgba(160, 100, 255, 0.15);
+
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.project-nav-bar:hover {
+    box-shadow:
+        0 12px 40px rgba(140, 80, 255, 0.45),
+        inset 0 0 24px rgba(200, 120, 255, 0.2);
 }
 
 .detail-topbar {
@@ -516,9 +532,14 @@ a {
 }
 
 .btn-outline {
-    background: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(200, 140, 255, 0.4);
+    background: rgba(255, 255, 255, 0.04);
     color: #fff;
-    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+.btn-outline:hover {
+    background: rgba(200, 140, 255, 0.15);
+    box-shadow: 0 0 12px rgba(180, 100, 255, 0.5);
 }
 
 .alert {
