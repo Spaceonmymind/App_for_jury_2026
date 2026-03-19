@@ -65,56 +65,11 @@
         <div class="alert alert-success">{{ success }}</div>
     {% endif %}
 
-    <section class="project-description-grid">
-        <div class="glass-panel detail-card description-main-card">
-            <div class="detail-row">
-                <div class="detail-label">Краткое описание сервиса</div>
-                <div class="detail-value">
-                    {{ project.description or "Описание пока не добавлено" }}
-                </div>
-            </div>
-        </div>
-
-        <div class="glass-panel detail-card description-block description-problem">
-            <div class="description-block-head">
-                <div class="description-icon">!</div>
-                <div class="description-title-wrap">
-                    <div class="detail-label">Проблема</div>
-                    <div class="description-title">Какую проблему решает сервис</div>
-                </div>
-            </div>
-            <div class="detail-value">
-                {{ project.problem or "Описание проблемы отсутствует" }}
-            </div>
-        </div>
-
-        <div class="glass-panel detail-card description-block description-solution">
-            <div class="description-block-head">
-                <div class="description-icon">✓</div>
-                <div class="description-title-wrap">
-                    <div class="detail-label">Решение</div>
-                    <div class="description-title">Что предлагает сервис</div>
-                </div>
-            </div>
-            <div class="detail-value">
-                {{ project.solution or "Описание решения отсутствует" }}
-            </div>
-        </div>
-
-        <div class="glass-panel detail-card description-block description-flow">
-            <div class="description-block-head">
-                <div class="description-icon">→</div>
-                <div class="description-title-wrap">
-                    <div class="detail-label">Устройство сервиса</div>
-                    <div class="description-title">Как работает сервис</div>
-                </div>
-            </div>
-            <div class="detail-value">
-                {{ project.service_flow or "Описание работы сервиса отсутствует" }}
-            </div>
-        </div>
-
-    </section>
+    <div class="project-more-toggle">
+        <button type="button" class="btn btn-outline" onclick="openDetailsModal()">
+            Подробнее
+        </button>
+    </div>
 
     <form method="post" action="/expert/projects/{{ project.id }}/score" class="score-form">
         <section class="glass-panel score-card">
@@ -158,6 +113,66 @@
     </form>
 </div>
 
+<div class="modal-backdrop" id="projectDetailsModal">
+    <div class="modal-card modal-large">
+        <div class="modal-title">Описание проекта</div>
+
+        <div class="project-description-grid">
+            <div class="glass-panel detail-card description-main-card">
+                <div class="detail-row">
+                    <div class="detail-label">Краткое описание сервиса</div>
+                    <div class="detail-value">
+                        {{ project.description or "Описание пока не добавлено" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="glass-panel detail-card description-block description-problem">
+                <div class="description-block-head">
+                    <div class="description-icon">!</div>
+                    <div class="description-title-wrap">
+                        <div class="detail-label">Проблема</div>
+                        <div class="description-title">Какую проблему решает сервис?</div>
+                    </div>
+                </div>
+                <div class="detail-value">
+                    {{ project.problem or "Описание проблемы отсутствует" }}
+                </div>
+            </div>
+
+            <div class="glass-panel detail-card description-block description-solution">
+                <div class="description-block-head">
+                    <div class="description-icon">✓</div>
+                    <div class="description-title-wrap">
+                        <div class="detail-label">Решение</div>
+                        <div class="description-title">Что предлагает сервис?</div>
+                    </div>
+                </div>
+                <div class="detail-value">
+                    {{ project.solution or "Описание решения отсутствует" }}
+                </div>
+            </div>
+
+            <div class="glass-panel detail-card description-block description-flow">
+                <div class="description-block-head">
+                    <div class="description-icon">→</div>
+                    <div class="description-title-wrap">
+                        <div class="detail-label">Устройство сервиса</div>
+                        <div class="description-title">Как работает сервис?</div>
+                    </div>
+                </div>
+                <div class="detail-value">
+                    {{ project.service_flow or "Описание работы сервиса отсутствует" }}
+                </div>
+            </div>
+        </div>
+
+        <div class="modal-actions">
+            <button type="button" class="btn btn-outline" onclick="closeDetailsModal()">Закрыть</button>
+        </div>
+    </div>
+</div>
+
 <div class="modal-backdrop" id="logoutModal">
     <div class="modal-card">
         <div class="modal-title">Подтверждение выхода</div>
@@ -184,6 +199,14 @@
 
     function closeLogoutModal() {
         document.getElementById('logoutModal').classList.remove('is-open');
+    }
+
+    function openDetailsModal() {
+        document.getElementById('projectDetailsModal').classList.add('is-open');
+    }
+
+    function closeDetailsModal() {
+        document.getElementById('projectDetailsModal').classList.remove('is-open');
     }
 </script>
 {% endblock %}
