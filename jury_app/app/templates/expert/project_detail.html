@@ -33,6 +33,12 @@
                     <span class="project-meta-value">{{ project.author_full_name }}</span>
                 </div>
             </div>
+
+            <div class="project-more-toggle project-more-toggle-inline">
+                <button type="button" class="btn btn-outline" onclick="openDetailsModal()">
+                    Подробнее
+                </button>
+            </div>
         </div>
 
         <div class="project-hero-media">
@@ -64,12 +70,6 @@
     {% if success %}
         <div class="alert alert-success">{{ success }}</div>
     {% endif %}
-
-    <div class="project-more-toggle">
-        <button type="button" class="btn btn-outline" onclick="openDetailsModal()">
-            Подробнее
-        </button>
-    </div>
 
     <form method="post" action="/expert/projects/{{ project.id }}/score" class="score-form">
         <section class="glass-panel score-card">
@@ -113,9 +113,12 @@
     </form>
 </div>
 
-<div class="modal-backdrop" id="projectDetailsModal">
-    <div class="modal-card modal-large">
-        <div class="modal-title">Описание проекта</div>
+<div class="modal-backdrop" id="projectDetailsModal" onclick="closeDetailsModal(event)">
+    <div class="modal-card modal-large modal-scrollable" onclick="event.stopPropagation()">
+        <div class="modal-header-row">
+            <div class="modal-title">Описание проекта</div>
+            <button type="button" class="modal-close-btn" onclick="closeDetailsModal()">×</button>
+        </div>
 
         <div class="project-description-grid">
             <div class="glass-panel detail-card description-main-card">
@@ -168,7 +171,7 @@
         </div>
 
         <div class="modal-actions">
-            <button type="button" class="btn btn-outline" onclick="closeDetailsModal()">Закрыть</button>
+            <button type="button" class="btn btn-outline" onclick="closeDetailsModal()">Закрыть окно</button>
         </div>
     </div>
 </div>
@@ -205,7 +208,10 @@
         document.getElementById('projectDetailsModal').classList.add('is-open');
     }
 
-    function closeDetailsModal() {
+    function closeDetailsModal(event) {
+        if (event && event.target && event.target.id !== 'projectDetailsModal') {
+            return;
+        }
         document.getElementById('projectDetailsModal').classList.remove('is-open');
     }
 </script>
