@@ -27,7 +27,19 @@
         <div class="project-hero-content">
             <div class="forum-mark">МОЛОДЕЖНЫЙ ФОРУМ ПЛАТЕЖНЫХ ТЕХНОЛОГИЙ</div>
             <h1 class="project-page-title">{{ project.title }}</h1>
-            <p class="project-page-subtitle">{{ project.author_full_name }} · {{ project.organization }}</p>
+            <div class="project-meta-list">
+                <div class="project-meta-item">
+                    <span class="project-meta-label">Автор</span>
+                    <span class="project-meta-value">{{ project.author_full_name }}</span>
+                </div>
+
+                {% if project.organization %}
+                    <div class="project-meta-item">
+                        <span class="project-meta-label">Сопровождение</span>
+                        <span class="project-meta-value project-meta-multiline">{{ project.organization | replace(' | ', '\n') }}</span>
+                    </div>
+                {% endif %}
+            </div>
         </div>
 
         <div class="project-hero-media">
@@ -40,7 +52,7 @@
             {% else %}
                 <div class="project-hero-placeholder">
                     <div class="project-hero-placeholder-name">{{ project.author_full_name }}</div>
-                    <div class="project-hero-placeholder-org">{{ project.organization }}</div>
+                    <div class="project-hero-placeholder-org project-meta-multiline">{{ project.organization | replace(' | ', '\n') }}</div>
                 </div>
             {% endif %}
         </div>
@@ -109,14 +121,6 @@
             </div>
         </div>
 
-        {% if project.additional_info %}
-            <div class="glass-panel detail-card description-main-card">
-                <div class="detail-row">
-                    <div class="detail-label">Дополнительная информация</div>
-                    <div class="detail-value">{{ project.additional_info }}</div>
-                </div>
-            </div>
-        {% endif %}
     </section>
 
     <form method="post" action="/expert/projects/{{ project.id }}/score" class="score-form">
