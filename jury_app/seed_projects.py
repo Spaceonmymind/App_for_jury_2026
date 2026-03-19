@@ -14,7 +14,7 @@ projects = [
         service_flow="При нехватке средств на счету подопечного во время оплаты через СБПэй запрос на оплату проходит через сервис «БлагоДарю», который заменяет счет подопечного на счет попечителя, тем самым оплачивая покупку денежными средствами с другого счета.",
         additional_info="Сервис: БлагоДарю",
         card_image="img/projects/test1.jpg",
-        author_image="img/authors/test.jpg",
+        author_image="img/authors/Aleksina.jpg",
         sort_order=1,
         is_active=True,
     ),
