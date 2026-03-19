@@ -114,7 +114,6 @@ a {
     width: min(1400px, calc(100% - 32px));
     margin: 0 auto;
     padding: 24px 0 40px;
-    padding-top: 90px;
 }
 
 .screen-narrow {
