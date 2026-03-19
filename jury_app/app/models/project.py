@@ -11,7 +11,12 @@ class Project(Base):
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     author_full_name: Mapped[str] = mapped_column(String(255), nullable=False)
     organization: Mapped[str] = mapped_column(String(255), nullable=False)
+
     description: Mapped[str | None] = mapped_column(Text, nullable=True)
+    problem: Mapped[str | None] = mapped_column(Text, nullable=True)
+    solution: Mapped[str | None] = mapped_column(Text, nullable=True)
+    service_flow: Mapped[str | None] = mapped_column(Text, nullable=True)
+
     additional_info: Mapped[str | None] = mapped_column(Text, nullable=True)
     card_image: Mapped[str | None] = mapped_column(String(255), nullable=True)
     author_image: Mapped[str | None] = mapped_column(String(255), nullable=True)

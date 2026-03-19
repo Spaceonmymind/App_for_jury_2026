@@ -818,6 +818,99 @@ a {
     padding: 16px 0;
 }
 
+.project-description-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+    margin-top: 18px;
+}
+
+.description-main-card {
+    padding: 24px 28px;
+}
+
+.description-block {
+    padding: 24px 28px;
+    position: relative;
+    overflow: hidden;
+}
+
+.description-block::before {
+    content: "";
+    position: absolute;
+    inset: 0 auto 0 0;
+    width: 4px;
+    border-radius: 10px;
+}
+
+.description-problem::before {
+    background: linear-gradient(180deg, #ff7a7a 0%, #ff4db8 100%);
+}
+
+.description-solution::before {
+    background: linear-gradient(180deg, #c355ef 0%, #7f5cff 100%);
+}
+
+.description-flow::before {
+    background: linear-gradient(180deg, #57b8ff 0%, #7f5cff 100%);
+}
+
+.description-block-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    margin-bottom: 16px;
+}
+
+.description-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: 800;
+    color: #fff;
+    background: rgba(255, 255, 255, 0.10);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    flex-shrink: 0;
+}
+
+.description-title-wrap {
+    min-width: 0;
+}
+
+.description-title {
+    font-size: 22px;
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.2;
+}
+
+.description-block .detail-value,
+.description-main-card .detail-value {
+    font-size: 17px;
+    line-height: 1.7;
+    color: var(--text-main);
+}
+
+@media (max-width: 640px) {
+    .description-block,
+    .description-main-card {
+        padding: 20px 22px;
+    }
+
+    .description-title {
+        font-size: 20px;
+    }
+
+    .description-block .detail-value,
+    .description-main-card .detail-value {
+        font-size: 16px;
+    }
+}
+
 @media (max-width: 900px) {
     .admin-stats-grid {
         grid-template-columns: 1fr;

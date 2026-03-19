@@ -60,22 +60,69 @@
         <div class="alert alert-success">{{ success }}</div>
     {% endif %}
 
-    <section class="glass-panel detail-card">
-        <div class="detail-row">
-            <div class="detail-label">Описание проекта</div>
-            <div class="detail-value">{{ project.description or "Описание пока не добавлено" }}</div>
+    <section class="project-description-grid">
+        <div class="glass-panel detail-card description-main-card">
+            <div class="detail-row">
+                <div class="detail-label">Краткое описание сервиса</div>
+                <div class="detail-value">
+                    {{ project.description or "Описание пока не добавлено" }}
+                </div>
+            </div>
         </div>
 
-        <div class="detail-row">
-            <div class="detail-label">Дополнительная информация</div>
-            <div class="detail-value">{{ project.additional_info or "Дополнительная информация отсутствует" }}</div>
+        <div class="glass-panel detail-card description-block description-problem">
+            <div class="description-block-head">
+                <div class="description-icon">!</div>
+                <div class="description-title-wrap">
+                    <div class="detail-label">Проблема</div>
+                    <div class="description-title">Какую проблему решает сервис</div>
+                </div>
+            </div>
+            <div class="detail-value">
+                {{ project.problem or "Описание проблемы отсутствует" }}
+            </div>
         </div>
+
+        <div class="glass-panel detail-card description-block description-solution">
+            <div class="description-block-head">
+                <div class="description-icon">✓</div>
+                <div class="description-title-wrap">
+                    <div class="detail-label">Решение</div>
+                    <div class="description-title">Что предлагает сервис</div>
+                </div>
+            </div>
+            <div class="detail-value">
+                {{ project.solution or "Описание решения отсутствует" }}
+            </div>
+        </div>
+
+        <div class="glass-panel detail-card description-block description-flow">
+            <div class="description-block-head">
+                <div class="description-icon">→</div>
+                <div class="description-title-wrap">
+                    <div class="detail-label">Устройство сервиса</div>
+                    <div class="description-title">Как работает сервис</div>
+                </div>
+            </div>
+            <div class="detail-value">
+                {{ project.service_flow or "Описание работы сервиса отсутствует" }}
+            </div>
+        </div>
+
+        {% if project.additional_info %}
+            <div class="glass-panel detail-card description-main-card">
+                <div class="detail-row">
+                    <div class="detail-label">Дополнительная информация</div>
+                    <div class="detail-value">{{ project.additional_info }}</div>
+                </div>
+            </div>
+        {% endif %}
     </section>
 
     <form method="post" action="/expert/projects/{{ project.id }}/score" class="score-form">
         <section class="glass-panel score-card">
             <div class="score-card-head">
-                <h2 class="score-title">Оценивание проекта</h2>
+                <h2 class="score-title">Оценивание проекта — {{ project.title }}</h2>
                 <div class="score-caption">Выберите балл по каждому критерию</div>
             </div>
 
