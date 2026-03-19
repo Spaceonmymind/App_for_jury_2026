@@ -30,25 +30,74 @@ html, body {
     font-family: Arial, sans-serif;
     color: var(--text-main);
     background:
-        radial-gradient(circle at top left, #1b1977 0%, transparent 30%),
-        radial-gradient(circle at right top, rgba(217, 79, 245, 0.22) 0%, transparent 28%),
-        linear-gradient(135deg, var(--bg-main) 0%, var(--bg-deep) 100%);
+        linear-gradient(135deg, #0b0b52 0%, #090738 55%, #12084b 100%);
 }
 
 body {
     min-height: 100vh;
 }
 
+body::before {
+    content: "";
+    position: fixed;
+    width: 240px;
+    height: 240px;
+    left: -60px;
+    bottom: 40px;
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 0;
+    filter: blur(65px);
+    transform: translateZ(0);
+    background: radial-gradient(circle, rgba(111, 93, 255, 0.22) 0%, rgba(111, 93, 255, 0.08) 44%, rgba(111, 93, 255, 0) 74%);
+}
+
 a {
     color: inherit;
 }
+
 
 .app-shell {
     position: relative;
     min-height: 100vh;
     overflow-x: hidden;
+    isolation: isolate;
+    background:
+        radial-gradient(circle at 14% 18%, rgba(92, 121, 255, 0.16) 0%, transparent 22%),
+        radial-gradient(circle at 86% 14%, rgba(214, 74, 255, 0.14) 0%, transparent 24%),
+        radial-gradient(circle at 74% 76%, rgba(107, 78, 255, 0.10) 0%, transparent 26%),
+        linear-gradient(135deg, #0b0b52 0%, #090738 55%, #12084b 100%);
 }
+
+.app-shell::before,
+.app-shell::after {
+    content: "";
+    position: fixed;
+    inset: auto;
+    pointer-events: none;
+    z-index: 0;
+    border-radius: 50%;
+    filter: blur(70px);
+    transform: translateZ(0);
+    opacity: 0.85;
 }
+
+.app-shell::before {
+    width: 280px;
+    height: 280px;
+    left: -70px;
+    top: 70px;
+    background: radial-gradient(circle, rgba(122, 155, 255, 0.34) 0%, rgba(122, 155, 255, 0.10) 40%, rgba(122, 155, 255, 0) 72%);
+}
+
+.app-shell::after {
+    width: 360px;
+    height: 360px;
+    right: -90px;
+    top: -10px;
+    background: radial-gradient(circle, rgba(223, 88, 255, 0.30) 0%, rgba(223, 88, 255, 0.10) 42%, rgba(223, 88, 255, 0) 74%);
+}
+
 
 .bg-orb {
     position: fixed;
