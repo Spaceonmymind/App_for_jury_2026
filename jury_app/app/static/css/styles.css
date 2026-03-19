@@ -114,6 +114,7 @@ a {
     width: min(1400px, calc(100% - 32px));
     margin: 0 auto;
     padding: 24px 0 40px;
+    padding-top: 90px;
 }
 
 .screen-narrow {
@@ -834,12 +835,12 @@ a {
 }
 
 .project-nav-wrap {
-    position: sticky;
-    top: 0;
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(1120px, calc(100% - 32px));
     z-index: 1000;
-    padding-top: 8px;
-    margin-bottom: 12px;
-    background: transparent;
 }
 
 .project-nav-bar {
@@ -851,7 +852,7 @@ a {
     border-radius: 18px;
     background: rgba(10, 10, 40, 0.96);
     border: 1px solid rgba(255, 255, 255, 0.08);
-    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.22);
+    box-shadow: 0 10px 24px rgba(0, 0, 0, 0.25);
 }
 
 .project-description-grid {
