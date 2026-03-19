@@ -297,7 +297,7 @@ a {
     justify-content: space-between;
     gap: 16px;
     align-items: center;
-    margin-bottom: 18px;
+    margin-bottom: 0;
 }
 
 .nav-link {
@@ -807,18 +807,16 @@ a {
     color: var(--text-muted);
 }
 
-.project-nav {
+.project-nav-wrap {
     position: sticky;
     top: 0;
     z-index: 1000;
-    padding-top: 12px;
-    margin-bottom: 16px;
-    background: linear-gradient(180deg, rgba(10, 10, 40, 0.95), rgba(10, 10, 40, 0.85));
-    backdrop-filter: blur(10px);
+    padding-top: 8px;
+    margin-bottom: 10px;
 }
 
 .project-nav-bar {
-    padding: 14px 18px;
+    padding: 10px 18px;
     border-radius: 18px;
     background: linear-gradient(180deg, rgba(10, 10, 40, 0.96), rgba(10, 10, 40, 0.86));
     backdrop-filter: blur(10px);
