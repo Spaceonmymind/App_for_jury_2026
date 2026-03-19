@@ -4,16 +4,18 @@
 
 {% block content %}
 <div class="screen screen-narrow">
-    <div class="detail-topbar">
-        <a href="/expert" class="nav-link">← К проектам</a>
+    <div class="project-nav-wrap">
+        <div class="detail-topbar project-nav-bar">
+            <a href="/expert" class="nav-link">← К проектам</a>
 
-        <div class="detail-nav">
-            {% if prev_project %}
-                <a href="/expert/projects/{{ prev_project.id }}" class="btn btn-outline">Предыдущий</a>
-            {% endif %}
-            {% if next_project %}
-                <a href="/expert/projects/{{ next_project.id }}" class="btn btn-outline">Следующий</a>
-            {% endif %}
+            <div class="detail-nav">
+                {% if prev_project %}
+                    <a href="/expert/projects/{{ prev_project.id }}" class="btn btn-outline">Предыдущий</a>
+                {% endif %}
+                {% if next_project %}
+                    <a href="/expert/projects/{{ next_project.id }}" class="btn btn-outline">Следующий</a>
+                {% endif %}
+            </div>
         </div>
     </div>
 
