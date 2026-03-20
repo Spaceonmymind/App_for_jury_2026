@@ -732,11 +732,10 @@ a {
 }
 
 .alert-info {
-    background: rgba(255, 255, 255, 0.08);
-    color: #cfd6ff;
-    border: 1px solid rgba(120, 140, 255, 0.25);
-    backdrop-filter: blur(10px);
-    box-shadow: 0 8px 22px rgba(40, 60, 255, 0.08);
+    background: rgba(255, 255, 255, 0.92);
+    color: #1b2cff;
+    border: 1px solid rgba(40, 60, 255, 0.18);
+    box-shadow: 0 6px 18px rgba(40, 60, 255, 0.10);
 }
 
 .modal-large {
